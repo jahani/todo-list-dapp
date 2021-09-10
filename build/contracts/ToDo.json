@@ -1,0 +1,223 @@
+{
+  "contractName": "ToDo",
+  "abi": [
+    {
+      "inputs": [],
+      "payable": false,
+      "stateMutability": "nonpayable",
+      "type": "constructor"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.5.16+commit.9c3226ce\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"inputs\":[],\"payable\":false,\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"}],\"devdoc\":{\"methods\":{}},\"userdoc\":{\"methods\":{}}},\"settings\":{\"compilationTarget\":{\"project:/contracts/ToDo.sol\":\"ToDo\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"project:/contracts/ToDo.sol\":{\"keccak256\":\"0x9b8fa286637745810636a7630d05238246a4b574aca109f233e571755d34d4ea\",\"urls\":[\"bzz-raw://60a7328111eb05dabf47b53f880ddedea6e6065c333be41d3d38e323b32802e3\",\"dweb:/ipfs/QmNuRBSMBKQiS58oRe76znusJJNuj4psinDtUHus3J1pEf\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603e80601d6000396000f3fe6080604052600080fdfea265627a7a7231582043ea321a3ca7c3a9501cddbb85b9aa32808982235a4c09e81c82808d4a3944a664736f6c63430005100032",
+  "deployedBytecode": "0x6080604052600080fdfea265627a7a7231582043ea321a3ca7c3a9501cddbb85b9aa32808982235a4c09e81c82808d4a3944a664736f6c63430005100032",
+  "sourceMap": "66:46:1:-;;;84:26;8:9:-1;5:2;;;30:1;27;20:12;5:2;84:26:1;66:46;;;;;;",
+  "deployedSourceMap": "66:46:1:-;;;;;",
+  "source": "// SPDX-License-Identifier: MIT\npragma solidity >=0.4.22 <0.9.0;\n\ncontract ToDo {\n  constructor() public {\n  }\n}\n",
+  "sourcePath": "/home/ubuntu/todo-list-dapp/contracts/ToDo.sol",
+  "ast": {
+    "absolutePath": "project:/contracts/ToDo.sol",
+    "exportedSymbols": {
+      "ToDo": [
+        39
+      ]
+    },
+    "id": 40,
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 34,
+        "literals": [
+          "solidity",
+          ">=",
+          "0.4",
+          ".22",
+          "<",
+          "0.9",
+          ".0"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "32:32:1"
+      },
+      {
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 39,
+        "linearizedBaseContracts": [
+          39
+        ],
+        "name": "ToDo",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "body": {
+              "id": 37,
+              "nodeType": "Block",
+              "src": "105:5:1",
+              "statements": []
+            },
+            "documentation": null,
+            "id": 38,
+            "implemented": true,
+            "kind": "constructor",
+            "modifiers": [],
+            "name": "",
+            "nodeType": "FunctionDefinition",
+            "parameters": {
+              "id": 35,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "95:2:1"
+            },
+            "returnParameters": {
+              "id": 36,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "105:0:1"
+            },
+            "scope": 39,
+            "src": "84:26:1",
+            "stateMutability": "nonpayable",
+            "superFunction": null,
+            "visibility": "public"
+          }
+        ],
+        "scope": 40,
+        "src": "66:46:1"
+      }
+    ],
+    "src": "32:81:1"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "project:/contracts/ToDo.sol",
+      "exportedSymbols": {
+        "ToDo": [
+          39
+        ]
+      }
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            ">=",
+            "0.4",
+            ".22",
+            "<",
+            "0.9",
+            ".0"
+          ]
+        },
+        "id": 34,
+        "name": "PragmaDirective",
+        "src": "32:32:1"
+      },
+      {
+        "attributes": {
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            39
+          ],
+          "name": "ToDo",
+          "scope": 40
+        },
+        "children": [
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": true,
+              "kind": "constructor",
+              "modifiers": [
+                null
+              ],
+              "name": "",
+              "scope": 39,
+              "stateMutability": "nonpayable",
+              "superFunction": null,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 35,
+                "name": "ParameterList",
+                "src": "95:2:1"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 36,
+                "name": "ParameterList",
+                "src": "105:0:1"
+              },
+              {
+                "attributes": {
+                  "statements": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 37,
+                "name": "Block",
+                "src": "105:5:1"
+              }
+            ],
+            "id": 38,
+            "name": "FunctionDefinition",
+            "src": "84:26:1"
+          }
+        ],
+        "id": 39,
+        "name": "ContractDefinition",
+        "src": "66:46:1"
+      }
+    ],
+    "id": 40,
+    "name": "SourceUnit",
+    "src": "32:81:1"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.5.16+commit.9c3226ce.Emscripten.clang"
+  },
+  "networks": {
+    "1631307707140": {
+      "events": {},
+      "links": {},
+      "address": "0x4692ecD564F12A55dB794f86C453069EdaB82D5A",
+      "transactionHash": "0xcb60570da43de535c7cd278bce5dc75ef2cfa97af34ebe1b5454b34fb6814e76"
+    }
+  },
+  "schemaVersion": "3.4.3",
+  "updatedAt": "2021-09-10T22:20:42.083Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "methods": {}
+  },
+  "userdoc": {
+    "methods": {}
+  }
+}
