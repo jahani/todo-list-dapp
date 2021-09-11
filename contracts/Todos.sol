@@ -61,7 +61,7 @@ contract Todos is Ownable{
     _;
   }
 
-  modifier incompleted (uint _id) {
+  modifier incomplete (uint _id) {
     require(!getTask(_id).completed);
     _;
   }
@@ -105,7 +105,7 @@ contract Todos is Ownable{
   
 
   // Set complete
-  function setComplete(uint _id) public incompleted(_id) {
+  function setComplete(uint _id) public incomplete(_id) {
     Task memory task = getTask(_id);
     if (!hasPrize(_id) || !isExpired(_id)) {
       task.completed = true;
