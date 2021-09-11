@@ -15,7 +15,7 @@ contract Prizable {
         revert();
     }
 
-    function addPrize(address _address, uint _amount) public {
+    function addPrize(address _address, uint _amount) internal {
         uint balance = prizes[_address];
         balance += _amount;
         prizes[_address] = balance;
