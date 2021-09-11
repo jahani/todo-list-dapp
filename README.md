@@ -7,7 +7,7 @@ A todo list powered by Ethereum smart contracts
 ## TODOs
 
 ### Project
-- [*] Develop project
+- [x] Develop project
 - [ ] Explain how to run the project (`README.md`)
 - [ ] `design_pattern_decisions.md` file (optional)
 - [ ] `avoiding_common_attacks.md` file (optional)
@@ -17,7 +17,7 @@ A todo list powered by Ethereum smart contracts
 - [ ] A simple UI
 - [ ] Record project deployment process and doing different scenarios (4 to 10 minutes)
 - [ ] Metamask integration
-- [*] Use a library
+- [x] Use a library
 
 ### Backend
 
