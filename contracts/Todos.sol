@@ -2,7 +2,9 @@
 pragma solidity >=0.8.0 <0.9.0;
 //pragma experimental ABIEncoderV2; // Two level dynamic arrays support
 
-contract Todos {
+import "@openzeppelin/contracts/access/Ownable.sol";
+
+contract Todos is Ownable{
   /*
    * Constant variables
    */
@@ -13,9 +15,6 @@ contract Todos {
   /*
    * State variables
    */
-  
-  // Contract owner
-  address owner;
 
   struct Task {
     string description;
@@ -46,11 +45,6 @@ contract Todos {
    * Modifiers
    */
 
-  modifier isOwner (address _address) {
-    require(msg.sender == owner);
-    _;
-  }
-
   modifier validDueDate (uint _date) {
     require(_date > block.timestamp);
     _;
@@ -74,11 +68,9 @@ contract Todos {
 
 
 
-  constructor() public {
-    owner = msg.sender;
-  }
-
-
+  /* 
+   * Functions
+   */
 
   // Add task
   function add(string memory _description, uint _dueDate) public {
