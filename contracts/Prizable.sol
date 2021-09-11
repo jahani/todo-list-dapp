@@ -45,5 +45,10 @@ contract Prizable {
 
       return getPrize();
     }
+
+
+    function payUser(uint amount) internal {
+        payable(msg.sender).transfer(amount);
+    }
     
 }

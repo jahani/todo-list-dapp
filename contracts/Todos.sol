@@ -136,6 +136,21 @@ contract Todos is Ownable, Prizable{
     return !task.cleared;
   }
 
+  // Clear a task
+  function clear(uint _id) public returns (bool) {
+    Task memory task = getTask(_id);
+    if(hasPrize(_id) || isPunishing(_id)) {
+      return false;
+    }
+    if(isPunishmentOver(_id)) {
+      task.cleared = true;
+      payUser(task.value);
+      replace(_id, task);
+      return true;
+    }
+    return false;
+  }
+
   // Set prize
   function setPrize(uint _id) public payable dueIsSet(_id) {
     Task memory task = getTask(_id);
@@ -158,10 +173,16 @@ contract Todos is Ownable, Prizable{
       return false;
     }
     Task memory task = getTask(_id);
+    return !isPunishmentOver(_id);
+  }
+
+  // Is punishment period over
+  function isPunishmentOver(uint _id) private view returns (bool){
+    Task memory task = getTask(_id);
     if (block.timestamp > task.dueDate + PUNISHMENT_TIME) {
-      return false;
+      return true;
     }
-    return true;
+    return false;
   }
 
   // Is task overdue
@@ -180,6 +201,7 @@ contract Todos is Ownable, Prizable{
 
   // Get task
   function getTask(uint _id) public view returns(Task memory) {
+    require(tasks[msg.sender].length>_id);
     return tasks[msg.sender][_id];
   }
 
