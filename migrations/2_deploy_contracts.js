@@ -1,5 +1,5 @@
-const ToDo = artifacts.require("ToDo");
+const Todos = artifacts.require("Todos");
 
 module.exports = function (deployer) {
-  deployer.deploy(ToDo);
+  deployer.deploy(Todos);
 };
