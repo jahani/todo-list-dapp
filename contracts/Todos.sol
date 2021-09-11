@@ -3,8 +3,9 @@ pragma solidity >=0.8.0 <0.9.0;
 //pragma experimental ABIEncoderV2; // Two level dynamic arrays support
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "./Prizable.sol";
 
-contract Todos is Ownable{
+contract Todos is Ownable, Prizable{
   /*
    * Constant variables
    */
@@ -27,12 +28,6 @@ contract Todos is Ownable{
 
   // Tasks
   mapping (address => Task[]) public tasks;
-
-  // Credits
-  mapping (address => uint) public credits;
-
-  // Prizes
-  mapping (address => uint) public prizes;
 
   /* 
    * Events
@@ -63,6 +58,11 @@ contract Todos is Ownable{
 
   modifier incomplete (uint _id) {
     require(!getTask(_id).completed);
+    _;
+  }
+
+  modifier dueIsSet (uint _id) {
+    require(getTask(_id).dueDate != 0);
     _;
   }
 
@@ -111,6 +111,14 @@ contract Todos is Ownable{
       task.completed = true;
       replace(_id, task);
     }
+    if (hasPrize(_id) && !task.cleared) {
+      if (!isPunishing(_id)) {
+        task.cleared = true;
+        task.completed = true;
+        replace(_id, task);
+        addPrize(msg.sender, task.value);
+      }
+    }
   }
 
   // Set incomplete
@@ -120,12 +128,40 @@ contract Todos is Ownable{
     replace(_id, task);
   }
 
-  // Is task locked: Has no price locked in it
+  // Has prize locked in it
   function hasPrize(uint _id) internal view returns (bool) {
     Task memory task = getTask(_id);
     if (task.value == 0)
       return false;
     return !task.cleared;
+  }
+
+  // Set prize
+  function setPrize(uint _id) public payable dueIsSet(_id) {
+    Task memory task = getTask(_id);
+    require(task.value == 0);
+    require(!isExpired(_id));
+    require(task.cleared);
+
+    task.value = msg.value;
+    task.cleared = false;
+
+    replace(_id, task);
+  }
+
+  // Is in punishment period
+  function isPunishing(uint _id) public view returns (bool) {
+    if (!hasPrize(_id)) {
+      return false;
+    }
+    if (!!isExpired(_id)) {
+      return false;
+    }
+    Task memory task = getTask(_id);
+    if (block.timestamp > task.dueDate + PUNISHMENT_TIME) {
+      return false;
+    }
+    return true;
   }
 
   // Is task overdue
