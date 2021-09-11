@@ -3,9 +3,9 @@ pragma solidity >=0.8.0 <0.9.0;
 //pragma experimental ABIEncoderV2; // Two level dynamic arrays support
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "./Prizable.sol";
+import "./Financable.sol";
 
-contract Todos is Ownable, Prizable{
+contract Todos is Ownable, Financable{
   /*
    * Constant variables
    */

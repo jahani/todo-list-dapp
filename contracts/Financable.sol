@@ -2,7 +2,7 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 
-contract Prizable {
+contract Financable {
     // Prizes
     mapping (address => uint) public prizes;
 
