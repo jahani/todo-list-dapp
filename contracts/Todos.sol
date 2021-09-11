@@ -172,7 +172,6 @@ contract Todos is Ownable, Prizable{
     if (!!isExpired(_id)) {
       return false;
     }
-    Task memory task = getTask(_id);
     return !isPunishmentOver(_id);
   }
 
