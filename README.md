@@ -10,7 +10,7 @@ A todo list powered by Ethereum smart contracts
 - [x] Develop project
 - [ ] Explain how to run the project (`README.md`)
 - [ ] `design_pattern_decisions.md` file (optional)
-- [ ] `avoiding_common_attacks.md` file (optional)
+- [x] `avoiding_common_attacks.md` file (optional)
 - [ ] `deployed_addresses.txt` file which contains contract address and testnet name
 - [ ] Demo (screen recording)
 - [ ] Test functions (at least 5)

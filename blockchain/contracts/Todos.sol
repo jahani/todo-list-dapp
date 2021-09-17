@@ -3,9 +3,10 @@ pragma solidity >=0.8.0 <0.9.0;
 //pragma experimental ABIEncoderV2; // Two level dynamic arrays support
 
 import "@openzeppelin/contracts/access/Ownable.sol";
+import "@openzeppelin/contracts/security/Pausable.sol";
 import "./Financable.sol";
 
-contract Todos is Ownable, Financable{
+contract Todos is Ownable, Financable, Pausable{
   /*
    * Constant variables
    */
@@ -208,6 +209,14 @@ contract Todos is Ownable, Financable{
   // Replace task
   function replace(uint _id, Task memory _task) internal {
     tasks[msg.sender][_id] = _task;
+  }
+
+  // Pause and Unpause contract
+  function pause() public onlyOwner() {
+    _pause();
+  }
+  function unpause() public onlyOwner() {
+    _unpause();
   }
 
 }
