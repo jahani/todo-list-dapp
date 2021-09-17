@@ -1,6 +1,10 @@
 # ToDo List DApp
 A todo list powered by Ethereum smart contracts
 
+## Contents
+- [Avoiding Common Attacks](docs/avoiding_common_attacks.md)
+- [Design Pattern Decisions](docs/design_pattern_decisions.md)
+
 ## How to run projct
 
 
@@ -19,7 +23,4 @@ A todo list powered by Ethereum smart contracts
 - [ ] Metamask integration
 - [x] Use a library
 
-### Backend
-
-
-### Frontend
+### Ideas
