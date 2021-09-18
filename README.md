@@ -24,3 +24,4 @@ A todo list powered by Ethereum smart contracts
 - [x] Use a library
 
 ### Ideas
+- [ ] Add prize for others tasks
