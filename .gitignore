@@ -1,2 +1,3 @@
 deploy_mnemonic.key
 node_modules
+.env
