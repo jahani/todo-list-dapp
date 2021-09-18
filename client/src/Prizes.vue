@@ -1,24 +1,19 @@
 <template>
   <div v-if="isDrizzleInitialized">
     <div>
-
-      <h3>Tasks List</h3>
-      <drizzle-contract contractName="Todos" method="getTasks" />
-
-      <!-- <drizzle-contract
+      <drizzle-contract
         contractName="Todos"
         method="getPrize"
-        label="Value"
-      /> -->
+        label="Prizes Value"
+        units="Ether" :precision="3"
+      />
 
-      <h3>Add a task</h3>
       <drizzle-contract-form
         contractName="Todos"
-        method="add"
-        :placeholders="placeholders"
+        method="withdrawPrize"
+        :placeholders="['Amount to withdraw']"
       />
     </div>
-    
   </div>
 
   <div v-else>Loading...</div>
@@ -28,14 +23,10 @@
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'Todos',
+  name: 'Prizes',
 
   computed: {
     ...mapGetters('drizzle', ['isDrizzleInitialized']),
-
-    placeholders() {
-      return ['Description', 'Due Date']
-    }
   }
 }
 </script>

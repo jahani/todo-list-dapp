@@ -4,7 +4,12 @@
 
     <div class="section">
       <h2>Show the Accounts</h2>
-      <drizzle-account units="Ether" :precision="2" />
+      <drizzle-account units="Ether" :precision="3" />
+    </div>
+
+    <div class="section">
+      <h2>Prizes</h2>
+      <Prizes />
     </div>
 
     <div class="section">
@@ -19,12 +24,14 @@
 
 <script>
 import Todos from './Todos'
+import Prizes from './Prizes'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'app',
   components: {
     Todos,
+    Prizes,
   },
 
   computed: mapGetters('drizzle', ['isDrizzleInitialized'])
