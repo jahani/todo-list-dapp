@@ -87,8 +87,8 @@ contract TaskFactory is Financable, Pausable{
 
 
   // Update task
-  function update(uint _id, string memory _description, uint _dueDate)
-  public notPrized(_id) {
+  function _update(uint _id, string memory _description, uint _dueDate)
+  internal notPrized(_id) {
     Task memory task = tasks[msg.sender][_id];
     task.description = _description;
     task.dueDate = _dueDate;
@@ -96,7 +96,7 @@ contract TaskFactory is Financable, Pausable{
   }
 
   // Remove task
-  function remove(uint _id) public notPrized(_id) {
+  function _remove(uint _id) internal notPrized(_id) {
     require(_id < tasks[msg.sender].length);
 
     tasks[msg.sender][_id] = tasks[msg.sender][tasks[msg.sender].length - 1];
@@ -105,14 +105,14 @@ contract TaskFactory is Financable, Pausable{
   
 
   // Set complete
-  function setComplete(uint _id) public incomplete(_id) {
+  function _setComplete(uint _id) internal incomplete(_id) {
     Task memory task = getTask(_id);
     if (!hasPrize(_id) || !isExpired(_id)) {
       task.completed = true;
       replace(_id, task);
     }
     if (hasPrize(_id) && !task.cleared) {
-      if (!isPunishing(_id)) {
+      if (!isUnderPunishment(_id)) {
         task.cleared = true;
         task.completed = true;
         replace(_id, task);
@@ -122,14 +122,14 @@ contract TaskFactory is Financable, Pausable{
   }
 
   // Set incomplete
-  function setIncomplete(uint _id) public completed(_id) notPrized(_id) {
+  function _setIncomplete(uint _id) internal completed(_id) notPrized(_id) {
     Task memory task = getTask(_id);
     task.completed = false;
     replace(_id, task);
   }
 
   // Has prize locked in it
-  function hasPrize(uint _id) internal view returns (bool) {
+  function hasPrize(uint _id) private view returns (bool) {
     Task memory task = getTask(_id);
     if (task.value == 0)
       return false;
@@ -137,9 +137,9 @@ contract TaskFactory is Financable, Pausable{
   }
 
   // Clear a task
-  function clear(uint _id) public returns (bool) {
+  function _clear(uint _id) internal returns (bool) {
     Task memory task = getTask(_id);
-    if(hasPrize(_id) || isPunishing(_id)) {
+    if(hasPrize(_id) || isUnderPunishment(_id)) {
       return false;
     }
     if(isPunishmentOver(_id)) {
@@ -152,7 +152,7 @@ contract TaskFactory is Financable, Pausable{
   }
 
   // Set prize
-  function setPrize(uint _id) public payable dueIsSet(_id) whenNotPaused() {
+  function _setPrize(uint _id) internal dueIsSet(_id) whenNotPaused() {
     Task memory task = getTask(_id);
     require(task.value == 0);
     require(!isExpired(_id));
@@ -165,7 +165,7 @@ contract TaskFactory is Financable, Pausable{
   }
 
   // Is in punishment period
-  function isPunishing(uint _id) public view returns (bool) {
+  function isUnderPunishment(uint _id) private view returns (bool) {
     if (!hasPrize(_id)) {
       return false;
     }
@@ -185,7 +185,7 @@ contract TaskFactory is Financable, Pausable{
   }
 
   // Is task overdue
-  function isExpired(uint _id) internal view returns (bool) {
+  function isExpired(uint _id) private view returns (bool) {
     Task memory task = getTask(_id);
     if (task.dueDate == 0) {
       return false;
@@ -194,19 +194,19 @@ contract TaskFactory is Financable, Pausable{
   }
 
   // Get current user tasks
-  function getTasks() public view returns(Task[] memory) {
+  function _getTasks() internal view returns(Task[] memory) {
     return tasks[msg.sender];
   }
 
   // Get task
-  function getTask(uint _id) public view returns(Task memory) {
+  function getTask(uint _id) private view returns(Task memory) {
     require(tasks[msg.sender].length>_id);
     return tasks[msg.sender][_id];
   }
 
 
   // Replace task
-  function replace(uint _id, Task memory _task) internal {
+  function replace(uint _id, Task memory _task) private {
     tasks[msg.sender][_id] = _task;
   }
 
