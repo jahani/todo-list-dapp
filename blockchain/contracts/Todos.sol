@@ -3,10 +3,9 @@ pragma solidity >=0.8.0 <0.9.0;
 //pragma experimental ABIEncoderV2; // Two level dynamic arrays support
 
 import "@openzeppelin/contracts/access/Ownable.sol";
-import "@openzeppelin/contracts/security/Pausable.sol";
 import "./TaskFactory.sol";
 
-contract Todos is Ownable, Pausable, TaskFactory{
+contract Todos is Ownable, TaskFactory{
   
   /*
    * State variables

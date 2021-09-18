@@ -2,8 +2,9 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 import "./Financable.sol";
+import "@openzeppelin/contracts/security/Pausable.sol";
 
-contract TaskFactory is Financable {
+contract TaskFactory is Financable, Pausable{
   /*
    * Constant variables
    */
@@ -151,7 +152,7 @@ contract TaskFactory is Financable {
   }
 
   // Set prize
-  function setPrize(uint _id) public payable dueIsSet(_id) {
+  function setPrize(uint _id) public payable dueIsSet(_id) whenNotPaused() {
     Task memory task = getTask(_id);
     require(task.value == 0);
     require(!isExpired(_id));
