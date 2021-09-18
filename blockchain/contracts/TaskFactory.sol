@@ -34,8 +34,8 @@ contract TaskFactory is Financable, Pausable{
    * Events
    */
 
-  // Task added event
-  event LogAdd (address userAddress, uint taskID); // TODO
+  // Tasks updated event
+  event LogTasksUpdated ();
 
 
   /* 
@@ -83,6 +83,8 @@ contract TaskFactory is Financable, Pausable{
       cleared: true
     });
     tasks[msg.sender].push(task);
+
+    emit LogTasksUpdated();
   }
 
 
@@ -101,6 +103,8 @@ contract TaskFactory is Financable, Pausable{
 
     tasks[msg.sender][_id] = tasks[msg.sender][tasks[msg.sender].length - 1];
     tasks[msg.sender].pop();
+
+    emit LogTasksUpdated();
   }
   
 
@@ -208,6 +212,8 @@ contract TaskFactory is Financable, Pausable{
   // Replace task
   function replace(uint _id, Task memory _task) private {
     tasks[msg.sender][_id] = _task;
+
+    emit LogTasksUpdated();
   }
 
 }

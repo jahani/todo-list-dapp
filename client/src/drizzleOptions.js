@@ -10,7 +10,7 @@ const options = {
   },
   contracts: [Todos],
   events: {
-    Todos: ['LogAdd']
+    Todos: ['LogTasksUpdated']
   },
   polls: {
     accounts: 15000
