@@ -2,9 +2,10 @@
   <div v-if="isDrizzleInitialized">
     <div>
 
-      <h3>Tasks List</h3>
-      <b>Description / Created At / Value / Due Date / Compeleted / Cleared</b>
       <drizzle-contract contractName="Todos" method="getTasks" />
+
+      <h3>Tasks List</h3>
+      <Tasks />
 
       <!-- <drizzle-contract
         contractName="Todos"
@@ -49,11 +50,14 @@
 </template>
 
 <script>
+import Tasks from './Tasks'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'Todos',
-
+  components: {
+    Tasks,
+  },
   computed: {
     ...mapGetters('drizzle', ['isDrizzleInitialized']),
 
