@@ -37,7 +37,7 @@ npm run serve
 - [x] Explain how to run the project (`README.md`)
 - [x] `design_pattern_decisions.md` file (optional)
 - [x] `avoiding_common_attacks.md` file (optional)
-- [ ] `deployed_addresses.txt` file which contains contract address and testnet name
+- [x] `deployed_addresses.txt` file which contains contract address and testnet name
 - [ ] Demo (screen recording)
 - [ ] Test functions (at least 5)
 - [ ] A simple UI

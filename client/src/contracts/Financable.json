@@ -3,8 +3,7 @@
   "abi": [
     {
       "stateMutability": "payable",
-      "type": "fallback",
-      "payable": true
+      "type": "fallback"
     },
     {
       "inputs": [
@@ -23,13 +22,11 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "stateMutability": "payable",
-      "type": "receive",
-      "payable": true
+      "type": "receive"
     },
     {
       "inputs": [],
@@ -42,8 +39,7 @@
         }
       ],
       "stateMutability": "view",
-      "type": "function",
-      "constant": true
+      "type": "function"
     },
     {
       "inputs": [
@@ -3889,23 +3885,9 @@
     "name": "solc",
     "version": "0.8.0+commit.c7dfd78e.Emscripten.clang"
   },
-  "networks": {
-    "4": {
-      "events": {},
-      "links": {},
-      "address": "0x9168945CBC534d542826F7677F362a07E89842F6",
-      "transactionHash": "0x4051585531842ea0f66127ac03e00014aef3e61940542e492964e2413437d4d6"
-    },
-    "1631307707140": {
-      "events": {},
-      "links": {},
-      "address": "0x2e5D8877C3b7262Ddf44DBD54B74DFd35139Cb39",
-      "transactionHash": "0x117f4e3c05fd3922a75a2ec2288e04d6d27397bf3381f6073f2c11be4ddfcdd6"
-    }
-  },
+  "networks": {},
   "schemaVersion": "3.4.3",
-  "updatedAt": "2021-09-18T14:27:50.949Z",
-  "networkType": "ethereum",
+  "updatedAt": "2021-09-19T00:18:45.320Z",
   "devdoc": {
     "kind": "dev",
     "methods": {},
