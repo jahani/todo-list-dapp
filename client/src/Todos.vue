@@ -2,16 +2,11 @@
   <div v-if="isDrizzleInitialized">
     <div>
 
-      <drizzle-contract contractName="Todos" method="getTasks" />
+      <!-- <drizzle-contract contractName="Todos" method="getTasks" /> -->
 
       <h3>Tasks List</h3>
       <Tasks />
 
-      <!-- <drizzle-contract
-        contractName="Todos"
-        method="getPrize"
-        label="Value"
-      /> -->
 
       <h3>Add a Task</h3>
       <drizzle-contract-form
@@ -28,12 +23,15 @@
         :placeholders="['Task ID']"
       />
 
+      
       <h3>Set Prize for a Task</h3>
-      <drizzle-contract-form
+      <!-- <drizzle-contract-form
         contractName="Todos"
         method="setPrize"
         :placeholders="['Task ID']"
-      />
+      /> -->
+      <SetPrizeForm />
+
       
       <h3>Clear a Task</h3>
       <drizzle-contract-form
@@ -51,12 +49,14 @@
 
 <script>
 import Tasks from './Tasks'
+import SetPrizeForm from './SetPrizeForm'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'Todos',
   components: {
     Tasks,
+    SetPrizeForm
   },
   computed: {
     ...mapGetters('drizzle', ['isDrizzleInitialized']),
