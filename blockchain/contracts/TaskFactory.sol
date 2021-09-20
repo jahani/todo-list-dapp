@@ -42,8 +42,10 @@ contract TaskFactory is Financable, Pausable{
    * Modifiers
    */
 
-  modifier validDueDate (uint _date) {
-    require(_date > block.timestamp);
+  // Due date should be after current block timestamp
+  // Zero means unset due date
+  modifier validDueDate (uint _dueDate) {
+    require(_dueDate == 0 || _dueDate > block.timestamp);
     _;
   }
 
@@ -73,7 +75,10 @@ contract TaskFactory is Financable, Pausable{
    */
 
   // Add task
-  function _add(string memory _description, uint _dueDate) internal {
+  function _add(
+    string memory _description,
+    uint _dueDate
+  ) internal validDueDate(_dueDate) {
     Task memory task = Task({
       description: _description,
       createdAt: block.timestamp,
@@ -161,6 +166,7 @@ contract TaskFactory is Financable, Pausable{
     require(task.value == 0);
     require(!isExpired(_id));
     require(task.cleared);
+    require(msg.value != 0);
 
     task.value = msg.value;
     task.cleared = false;
