@@ -19,7 +19,10 @@
 
   </div>
 
-  <div v-else>Loading...</div>
+  <div v-else>
+    <p>Loading...</p>
+    <p>Is MetaMask extension installed on your browser?</p>
+  </div>
 </template>
 
 <script>
