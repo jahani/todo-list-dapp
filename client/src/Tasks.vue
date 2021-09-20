@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="isDrizzleInitialized">
 
         <table>
             <thead>
@@ -19,13 +19,16 @@
                     <td>{{ task.description }}</td>
                     <td>{{ task.createdAt }}</td>
                     <td>{{ task.dueDate }}</td>
-                    <td>{{ task.value }}</td>
+                    <td>{{ prizeValueString(task.value) }}</td>
                     <td>{{ task.completed }}</td>
                     <td>{{ task.cleared }}</td>
                 </tr>
             </tbody>
         </table>
 
+    </div>
+    <div v-else>
+        <p>Loading...</p>
     </div>
 </template>
 
@@ -41,6 +44,7 @@ const args = {
 export default {
     name: 'Tasks',
     computed: {
+        ...mapGetters('drizzle', ['drizzleInstance', 'isDrizzleInitialized', 'drizzleInstance.web3.utils']),
         ...mapGetters('contracts', ['getContractData']),
         rawTasks() {
             return this.getContractData({
@@ -65,6 +69,16 @@ export default {
     },
     created() {
         this.$store.dispatch('drizzle/REGISTER_CONTRACT', args)
+    },
+    methods: {
+        prizeValueString(valueInWei) {
+            let utils = this.drizzleInstance.web3.utils;
+            if (valueInWei == '0') {
+                return 'No Prize';
+            }
+            return valueInWei;
+            return utils.fromWei(valueInWei) + ' Eth'; // TODO
+        }
     }
 }
 </script>
