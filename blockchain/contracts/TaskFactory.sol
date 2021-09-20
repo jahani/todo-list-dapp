@@ -146,18 +146,15 @@ contract TaskFactory is Financable, Pausable{
   }
 
   // Clear a task
-  function _clear(uint _id) internal returns (bool) {
+  function _clear(uint _id) internal {
     Task memory task = getTask(_id);
-    if(hasPrize(_id) || isUnderPunishment(_id)) {
-      return false;
-    }
-    if(isPunishmentOver(_id)) {
-      task.cleared = true;
-      payUser(task.value);
-      replace(_id, task);
-      return true;
-    }
-    return false;
+
+    require(hasPrize(_id), "Don't have a prize!");
+    require(!isUnderPunishment(_id), "Task is under punishment!");
+    require(isPunishmentOver(_id), "Punishment is not over");
+    task.cleared = true;
+    payUser(task.value);
+    replace(_id, task);
   }
 
   // Set prize
@@ -179,7 +176,7 @@ contract TaskFactory is Financable, Pausable{
     if (!hasPrize(_id)) {
       return false;
     }
-    if (!!isExpired(_id)) {
+    if (!isExpired(_id)) {
       return false;
     }
     return !isPunishmentOver(_id);

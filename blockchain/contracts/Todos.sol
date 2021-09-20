@@ -54,8 +54,8 @@ contract Todos is Ownable, TaskFactory{
   }
 
   // Clear a task
-  function clear(uint _id) public returns (bool) {
-    return _clear(_id);
+  function clear(uint _id) public {
+    _clear(_id);
   }
   
 
