@@ -44,7 +44,7 @@ const args = {
 export default {
     name: 'Tasks',
     computed: {
-        ...mapGetters('drizzle', ['drizzleInstance', 'isDrizzleInitialized', 'drizzleInstance.web3.utils']),
+        ...mapGetters('drizzle', ['drizzleInstance', 'isDrizzleInitialized']),
         ...mapGetters('contracts', ['getContractData']),
         rawTasks() {
             return this.getContractData({
@@ -71,13 +71,13 @@ export default {
         this.$store.dispatch('drizzle/REGISTER_CONTRACT', args)
     },
     methods: {
-        prizeValueString(valueInWei) {
-            let utils = this.drizzleInstance.web3.utils;
-            if (valueInWei == '0') {
-                return 'No Prize';
+        prizeValueString(_valueInWei) {
+            const web3 = this.drizzleInstance.web3;
+            const valueInWei = new web3.utils.BN(_valueInWei);
+            if (valueInWei.toString() == '0') {
+                    return 'No Prize';
             }
-            return valueInWei;
-            return utils.fromWei(valueInWei) + ' Eth'; // TODO
+            return web3.utils.fromWei(valueInWei) + ' Ξ';
         }
     }
 }
