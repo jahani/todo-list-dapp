@@ -1,4 +1,5 @@
 const Todos = artifacts.require("Todos");
+const truffleAssert = require('truffle-assertions');
 
 
 contract("Todos", function ( accounts ) {
@@ -21,8 +22,9 @@ contract("Todos", function ( accounts ) {
   
   it("should accept zero due date", async function () {
     await instance.add('Task #0', zeroDueDate);
+    const tasks = await instance.getTasks()
+    assert.equal(tasks.length, 1);
   });
-
 
   it("should allow completeing non-prized task with right due date", async function () {
     await instance.add('Task #0', rightDueDate);
@@ -30,6 +32,12 @@ contract("Todos", function ( accounts ) {
     const tasks = await instance.getTasks();
     const task = tasks[0];
     assert.isTrue(task.completed);
+  });
+
+  it("should revert when due date is not valid", async function () {
+    await truffleAssert.reverts(
+      instance.add('Task #0', wrongDueDate)
+    );
   });
 
 });
