@@ -4,9 +4,15 @@ const truffleAssert = require('truffle-assertions');
 
 contract("Todos", function ( accounts ) {
 
+  const taskDescription = 'Task Description';
+
   const zeroDueDate = 0;
   const wrongDueDate = 1;
   const rightDueDate = 4294967295; // 2^32 - 1
+
+  const prizeValue = 1000;
+
+  const defaultAccount = accounts[0];
 
   let instance;
 
@@ -15,19 +21,18 @@ contract("Todos", function ( accounts ) {
   });
 
   it("should define owner", async function () {
-    const value1 = await instance.owner();
-    const value2 = accounts[0];
-    return assert.equal(value1, value2);
+    const owner = await instance.owner();
+    return assert.equal(owner, defaultAccount);
   });
   
   it("should accept zero due date", async function () {
-    await instance.add('Task #0', zeroDueDate);
+    await instance.add(taskDescription, zeroDueDate);
     const tasks = await instance.getTasks()
-    assert.equal(tasks.length, 1);
+    assert.equal(tasks.length, 1, "Tasks length should match the number of ");
   });
 
   it("should allow completeing non-prized task with right due date", async function () {
-    await instance.add('Task #0', rightDueDate);
+    await instance.add(taskDescription, rightDueDate);
     await instance.setComplete(0);
     const tasks = await instance.getTasks();
     const task = tasks[0];
@@ -36,8 +41,16 @@ contract("Todos", function ( accounts ) {
 
   it("should revert when due date is not valid", async function () {
     await truffleAssert.reverts(
-      instance.add('Task #0', wrongDueDate)
+      instance.add(taskDescription, wrongDueDate)
     );
+  });
+
+  it("should give prize for completing prized task", async function () {
+    await instance.add(taskDescription, rightDueDate);
+    await instance.setPrize(0, { from: defaultAccount, value: prizeValue });
+    await instance.setComplete(0);
+    const userPrize = await instance.getPrize();
+    assert.equal(userPrize, prizeValue);
   });
 
 });
