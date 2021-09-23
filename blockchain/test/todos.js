@@ -22,13 +22,13 @@ contract("Todos", function ( accounts ) {
 
   it("should define owner", async function () {
     const owner = await instance.owner();
-    return assert.equal(owner, defaultAccount);
+    return assert.equal(owner, defaultAccount, "default account should be owner");
   });
   
   it("should accept zero due date", async function () {
     await instance.add(taskDescription, zeroDueDate);
     const tasks = await instance.getTasks()
-    assert.equal(tasks.length, 1, "Tasks length should match the number of ");
+    assert.equal(tasks.length, 1, "tasks length should match the number of tasks");
   });
 
   it("should allow completeing non-prized task with right due date", async function () {
@@ -36,7 +36,7 @@ contract("Todos", function ( accounts ) {
     await instance.setComplete(0);
     const tasks = await instance.getTasks();
     const task = tasks[0];
-    assert.isTrue(task.completed);
+    assert.isTrue(task.completed, "user should be able to complete a task");
   });
 
   it("should revert when due date is not valid", async function () {
@@ -50,7 +50,10 @@ contract("Todos", function ( accounts ) {
     await instance.setPrize(0, { from: defaultAccount, value: prizeValue });
     await instance.setComplete(0);
     const userPrize = await instance.getPrize();
-    assert.equal(userPrize, prizeValue);
+    assert.equal(
+      userPrize,
+      prizeValue,
+      "user prize should match task prize after completing task");
   });
 
 });
