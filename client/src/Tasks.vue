@@ -1,22 +1,22 @@
 <template>
     <div v-if="isDrizzleInitialized">
 
-        <table>
+        <table class="table">
             <thead>
                 <tr>
-                    <th>ID</th>
-                    <th>Description</th>
-                    <th>Created At</th>
-                    <th>Due Date</th>
-                    <th>Value</th>
-                    <th>Completed</th>
-                    <th>Cleared</th>
-                    <th>Actions</th>
+                    <th scope="col">#</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Created At</th>
+                    <th scope="col">Due Date</th>
+                    <th scope="col">Value</th>
+                    <th scope="col">Completed</th>
+                    <th scope="col">Cleared</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
                 <tr v-for="(task, index) in tasks" :key="index">
-                    <td>{{ index }}</td>
+                    <th scope="row">{{ index }}</th>
                     <td>{{ task.description }}</td>
                     <td>{{ task.createdAt }}</td>
                     <td>{{ task.dueDate }}</td>
@@ -81,7 +81,7 @@ export default {
             const web3 = this.drizzleInstance.web3;
             const valueInWei = new web3.utils.BN(_valueInWei);
             if (valueInWei.toString() == '0') {
-                    return 'No Prize';
+                    return '-';
             }
             return web3.utils.fromWei(valueInWei) + ' Ξ';
         }

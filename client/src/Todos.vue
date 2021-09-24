@@ -2,20 +2,6 @@
   <div v-if="isDrizzleInitialized">
     <div>
 
-      <!-- <drizzle-contract contractName="Todos" method="getTasks" /> -->
-
-      <h3>Tasks List</h3>
-      <Tasks />
-
-
-      <h3>Add a Task</h3>
-      <drizzle-contract-form
-        contractName="Todos"
-        method="add"
-        :placeholders="placeholders"
-      />
-
-
       <h3>Set a Task as Completed</h3>
       <drizzle-contract-form
         contractName="Todos"

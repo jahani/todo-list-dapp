@@ -1,9 +1,21 @@
 <template>
     <div>
-        <button @click.prevent="onCompleteSubmit">Complete</button>
-        <button @click.prevent="onClearSubmit">Clear</button>
-        <input v-model="prizeAmount" placeholder="Prize Amount (Eth)" type="text">
-        <button @click.prevent="onSetPrizeSubmit">Set Prize</button>
+        <td>
+            <div class="d-flex flex-row">
+                <b-button size="sm" variant="success" @click.prevent="onCompleteSubmit">Complete</b-button>
+                &nbsp;
+                <b-button size="sm" variant="primary" @click.prevent="onClearSubmit">Clear</b-button>
+                &nbsp;
+                <div class="row">
+                    <div class="col-md-6 col-sm-12">
+                        <b-input size="sm" v-model="prizeAmount" placeholder="Prize Amount (Eth)" type="text" />
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <b-button size="sm" variant="danger" @click.prevent="onSetPrizeSubmit">Set Prize</b-button>
+                    </div>
+                </div>
+            </div>
+        </td>
     </div>
 </template>
 
