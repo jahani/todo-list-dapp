@@ -10,7 +10,7 @@ contract TaskFactory is Financable, Pausable{
    */
   
   // Punishment period in seconds
-  uint constant PUNISHMENT_TIME = 30 days;
+  uint constant public PUNISHMENT_TIME = 1 minutes;
 
 
   /*
