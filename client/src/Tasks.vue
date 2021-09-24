@@ -11,6 +11,7 @@
                     <th>Value</th>
                     <th>Completed</th>
                     <th>Cleared</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +23,7 @@
                     <td>{{ prizeValueString(task.value) }}</td>
                     <td>{{ task.completed }}</td>
                     <td>{{ task.cleared }}</td>
+                    <td><ActionsForm :taskID="index.toString()" /></td>
                 </tr>
             </tbody>
         </table>
@@ -34,6 +36,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import ActionsForm from './ActionsForm'
 
 const args = {
     contractName: 'Todos',
@@ -43,6 +46,9 @@ const args = {
 
 export default {
     name: 'Tasks',
+    components: {
+        ActionsForm
+    },
     computed: {
         ...mapGetters('drizzle', ['drizzleInstance', 'isDrizzleInitialized']),
         ...mapGetters('contracts', ['getContractData']),
