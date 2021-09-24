@@ -51,6 +51,9 @@ export default {
             moment.tz.setDefault();
             let datetimeString = this.date + " " + this.time;
             let timestamp = moment(datetimeString, "YYYY-MM-DD HH:mm").unix();
+            if (this.date == "" && this.time == "") {
+                timestamp = 0;
+            }
             this.drizzleInstance
                 .contracts[args.contractName]
                 .methods[args.method]
