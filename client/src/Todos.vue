@@ -2,7 +2,7 @@
   <div v-if="isDrizzleInitialized">
     <div>
 
-      <h3>Set a Task as Completed</h3>
+      <h5>Set a Task as Completed</h5>
       <drizzle-contract-form
         contractName="Todos"
         method="setComplete"
@@ -10,7 +10,7 @@
       />
 
       
-      <h3>Set Prize for a Task</h3>
+      <h5>Set Prize for a Task</h5>
       <!-- <drizzle-contract-form
         contractName="Todos"
         method="setPrize"
@@ -19,7 +19,7 @@
       <SetPrizeForm />
 
       
-      <h3>Clear a Task</h3>
+      <h5>Clear a Task</h5>
       <drizzle-contract-form
         contractName="Todos"
         method="clear"
