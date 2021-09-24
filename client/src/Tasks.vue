@@ -18,8 +18,8 @@
                 <tr v-for="(task, index) in tasks" :key="index">
                     <th scope="row">{{ index }}</th>
                     <td>{{ task.description }}</td>
-                    <td>{{ task.createdAt }}</td>
-                    <td>{{ task.dueDate }}</td>
+                    <td>{{ beautyDatetime(task.createdAt) }}</td>
+                    <td>{{ beautyDatetime(task.dueDate) }}</td>
                     <td>{{ prizeValueString(task.value) }}</td>
                     <td>{{ task.completed }}</td>
                     <td>{{ task.cleared }}</td>
@@ -37,6 +37,7 @@
 <script>
 import { mapGetters } from 'vuex'
 import ActionsForm from './ActionsForm'
+import moment from 'moment'
 
 const args = {
     contractName: 'Todos',
@@ -84,6 +85,12 @@ export default {
                     return '-';
             }
             return web3.utils.fromWei(valueInWei) + ' Ξ';
+        },
+        beautyDatetime(timestamp) {
+            if (timestamp == 0 || timestamp == '0') {
+                return "-";
+            }
+            return moment(timestamp*1000).format('YYYY/MM/DD HH:mm:ss');
         }
     }
 }
