@@ -26,7 +26,7 @@
     <div class="container">
 
       <div class="row">
-        <div class="col-lg-6 col-sm-12">
+        <div class="col-lg-8 col-md-12">
           <h3>Add a Task</h3>
           <!-- <drizzle-contract-form
             contractName="Todos"
@@ -35,7 +35,8 @@
           /> -->
           <AddTaskForm />
         </div>
-        <div class="col-lg-6 col-sm-12">
+        <div class="col-lg-1 col-md-12"></div>
+        <div class="col-lg-3 col-md-12">
           <h3>Prizes</h3>
           <Prizes />
         </div>

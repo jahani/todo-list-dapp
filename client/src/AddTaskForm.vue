@@ -2,22 +2,28 @@
     <div v-if="isDrizzleInitialized">
 
         <div>
-            <b-form inline>
-                <label class="sr-only" for="inline-form-input-name">Description</label>
-                <b-form-input
-                v-model="description"
-                id="inline-form-input-name"
-                class="mb-2 mr-sm-2 mb-sm-0"
-                placeholder="Task Description"
-                ></b-form-input>
+            <b-form inline class="row">
 
-                <label class="sr-only" for="inline-form-input-date">Date</label>
-                <b-form-input placeholder="YYYY-MM-DD" type="date" id="inline-form-input-date" v-model="date" class="mb-2"></b-form-input>
+                <div class="col-sm-5">
+                    <b-form-input
+                    v-model="description"
+                    class="mb-2"
+                    placeholder="Task Description"
+                    ></b-form-input>
+                </div>
 
-                <label class="sr-only" for="inline-form-input-time">Time</label>
-                <b-form-input type="time" id="inline-form-input-time" v-model="time" class="mb-2"></b-form-input>
+                <div class="col-sm-3">
+                    <b-form-input type="date" v-model="date" class="mb-2"></b-form-input>
+                </div>
 
-                <b-button @click.prevent="onSubmit" variant="primary">Add</b-button>
+                <div class="col-sm-3">
+                    <b-form-input type="time" v-model="time" class="mb-2"></b-form-input>
+                </div>
+
+                <div class="col-sm-1">
+                    <b-button @click.prevent="onSubmit" id="" variant="primary">Add</b-button>
+                </div>
+
             </b-form>
         </div>
 
