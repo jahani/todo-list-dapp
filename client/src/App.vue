@@ -28,11 +28,12 @@
       <div class="row">
         <div class="col-lg-6 col-sm-12">
           <h3>Add a Task</h3>
-          <drizzle-contract-form
+          <!-- <drizzle-contract-form
             contractName="Todos"
             method="add"
             :placeholders="['Description', 'Due Date']"
-          />
+          /> -->
+          <AddTaskForm />
         </div>
         <div class="col-lg-6 col-sm-12">
           <h3>Prizes</h3>
@@ -66,6 +67,7 @@
 import Todos from './Todos'
 import Tasks from './Tasks'
 import Prizes from './Prizes'
+import AddTaskForm from './AddTaskForm'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -74,6 +76,7 @@ export default {
     Todos,
     Tasks,
     Prizes,
+    AddTaskForm,
   },
 
   computed: mapGetters('drizzle', ['isDrizzleInitialized'])
