@@ -158,7 +158,10 @@ contract TaskFactory is Financable, Pausable{
   }
 
   // Set prize
-  function _setPrize(uint _id) internal dueIsSet(_id) whenNotPaused() {
+  function _setPrize(uint _id)
+    internal
+    dueIsSet(_id) whenNotPaused() incomplete(_id)
+  {
     Task memory task = getTask(_id);
     require(task.value == 0);
     require(!isExpired(_id));
