@@ -43,7 +43,7 @@ npm run serve
 - [x] `avoiding_common_attacks.md` file (optional)
 - [x] `deployed_addresses.txt` file which contains contract address and testnet name
 - [ ] Demo (screen recording)
-- [ ] Test functions (at least 5)
+- [x] Test functions (at least 5)
 - [x] A simple UI
 - [ ] Record project deployment process and doing different scenarios (4 to 10 minutes)
 - [x] Metamask integration
