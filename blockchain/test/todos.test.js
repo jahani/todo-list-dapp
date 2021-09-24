@@ -56,4 +56,12 @@ contract("Todos", function ( accounts ) {
       "user prize should match task prize after completing task");
   });
 
+  it("should revert when setting prize for a completed task", async function () {
+    await instance.add(taskDescription, rightDueDate);
+    await instance.setComplete(0);
+    await truffleAssert.reverts(
+      instance.setPrize(0, { from: defaultAccount, value: prizeValue })
+    );
+  });
+
 });
