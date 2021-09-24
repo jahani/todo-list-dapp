@@ -9,22 +9,12 @@
                     <th scope="col">Created At</th>
                     <th scope="col">Due Date</th>
                     <th scope="col">Value</th>
-                    <th scope="col">Completed</th>
-                    <th scope="col">Cleared</th>
-                    <th scope="col"></th>
+                    <th scope="col">Check</th>
+                    <th scope="col">Clear</th>
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="(task, index) in tasks" :key="index">
-                    <th scope="row">{{ index }}</th>
-                    <td>{{ task.description }}</td>
-                    <td>{{ beautyDatetime(task.createdAt) }}</td>
-                    <td>{{ beautyDatetime(task.dueDate) }}</td>
-                    <td>{{ prizeValueString(task.value) }}</td>
-                    <td>{{ task.completed }}</td>
-                    <td>{{ task.cleared }}</td>
-                    <td><ActionsForm :taskID="index.toString()" /></td>
-                </tr>
+                <TaskRow v-for="(task, index) in tasks" :key="index" :taskID="index.toString()" :task="task" />
             </tbody>
         </table>
 
@@ -36,8 +26,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import ActionsForm from './ActionsForm'
-import moment from 'moment'
+import TaskRow from './TaskRow'
 
 const args = {
     contractName: 'Todos',
@@ -48,7 +37,7 @@ const args = {
 export default {
     name: 'Tasks',
     components: {
-        ActionsForm
+        TaskRow
     },
     computed: {
         ...mapGetters('drizzle', ['drizzleInstance', 'isDrizzleInitialized']),
@@ -76,22 +65,6 @@ export default {
     },
     created() {
         this.$store.dispatch('drizzle/REGISTER_CONTRACT', args)
-    },
-    methods: {
-        prizeValueString(_valueInWei) {
-            const web3 = this.drizzleInstance.web3;
-            const valueInWei = new web3.utils.BN(_valueInWei);
-            if (valueInWei.toString() == '0') {
-                    return '-';
-            }
-            return web3.utils.fromWei(valueInWei) + ' Ξ';
-        },
-        beautyDatetime(timestamp) {
-            if (timestamp == 0 || timestamp == '0') {
-                return "-";
-            }
-            return moment(timestamp*1000).format('YYYY/MM/DD HH:mm:ss');
-        }
     }
 }
 </script>
