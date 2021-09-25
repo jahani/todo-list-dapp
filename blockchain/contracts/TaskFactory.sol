@@ -115,18 +115,18 @@ contract TaskFactory is Financable, Pausable{
 
   // Set complete
   function _setComplete(uint _id) internal incomplete(_id) {
+
+    require(!isExpired(_id), "due date is expired");
+    require(!isUnderPunishment(_id), "task is under punishment");
     Task memory task = getTask(_id);
-    if (!hasPrize(_id) || !isExpired(_id)) {
-      task.completed = true;
+
+    task.completed = true;
+    if(!task.cleared) {
+      task.cleared = true;
       replace(_id, task);
-    }
-    if (hasPrize(_id) && !task.cleared) {
-      if (!isUnderPunishment(_id)) {
-        task.cleared = true;
-        task.completed = true;
-        replace(_id, task);
-        addPrize(msg.sender, task.value);
-      }
+      addPrize(msg.sender, task.value);
+    } else {
+      replace(_id, task);
     }
   }
 
