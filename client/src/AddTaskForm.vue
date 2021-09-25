@@ -2,7 +2,7 @@
     <div v-if="isDrizzleInitialized">
 
         <div>
-            <b-form inline class="row">
+            <b-form inline class="row" @submit.prevent="onSubmit">
 
                 <div class="col-sm-5">
                     <b-form-input
@@ -21,7 +21,7 @@
                 </div>
 
                 <div class="col-sm-1">
-                    <b-button @click.prevent="onSubmit" id="" variant="primary">Add</b-button>
+                    <b-button type="submit" variant="primary">Add</b-button>
                 </div>
 
             </b-form>
