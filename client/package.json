@@ -13,7 +13,6 @@
     "bootstrap": "^5.1.1",
     "bootstrap-vue": "^2.21.2",
     "moment": "^2.29.1",
-    "moment-timezone": "^0.5.33",
     "prettier": "^1.18.2",
     "vue": "^2.6.10",
     "vuex": "^3.1.1"
