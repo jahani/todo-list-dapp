@@ -37,14 +37,12 @@
 </template>
 
 <script>
-import Tasks from './Tasks'
 import SetPrizeForm from './SetPrizeForm'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'Debugs',
   components: {
-    Tasks,
     SetPrizeForm
   },
   computed: {
