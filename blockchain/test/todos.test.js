@@ -1,5 +1,6 @@
 const Todos = artifacts.require("Todos");
 const truffleAssert = require('truffle-assertions');
+const timeTravel = require('./utils/timetravel.js');
 
 
 contract("Todos", function ( accounts ) {
@@ -9,6 +10,8 @@ contract("Todos", function ( accounts ) {
   const zeroDueDate = 0;
   const wrongDueDate = 1;
   const rightDueDate = 4294967295; // 2^32 - 1
+
+  const deadlineTime = 1000; // seconds
 
   const prizeValue = 1000;
 
@@ -61,6 +64,38 @@ contract("Todos", function ( accounts ) {
     await instance.setComplete(0);
     await truffleAssert.reverts(
       instance.setPrize(0, { from: defaultAccount, value: prizeValue })
+    );
+  });
+
+  it("should allow clearing a prized task after punishment period", async function () {
+    const punishmentTime = (await instance.PUNISHMENT_TIME()).toNumber();
+
+    const latestBlock = await web3.eth.getBlock('latest');
+    const currentTimestamp = latestBlock.timestamp;
+
+    const dueDate = currentTimestamp + deadlineTime;
+
+    await instance.add(taskDescription, dueDate);
+    await instance.setPrize(0, { from: defaultAccount, value: prizeValue });
+
+    // Timetravel to punishment period and try to clear the task
+    await timeTravel.advanceTimeAndBlock(deadlineTime + 1);
+    await truffleAssert.reverts(
+      instance.clear(0),
+      truffleAssert.ErrorType.REVERT,
+      "Should fail on clearing an under punishment task"
+    );
+    
+    // Timetravel to after punishment period
+    await timeTravel.advanceTimeAndBlock(punishmentTime);
+    await instance.clear(0)
+    
+    const tasks = await instance.getTasks();
+    const task = tasks[0];
+    assert.isTrue(task.cleared); // Task is cleared
+    assert.equal(
+      await instance.getPrize(), 0,
+      "No prize should be paid for user"
     );
   });
 
