@@ -77,7 +77,10 @@ export default {
             if (timestamp == 0 || timestamp == '0') {
                 return "-";
             }
-            return moment(timestamp*1000).format('YYYY/MM/DD HH:mm:ss');
+            const m = moment(timestamp*1000);
+            const mAbsolute = m.format('YYYY/MM/DD HH:mm:ss');
+            const mDiff = m.fromNow();
+            return `${mAbsolute} (${mDiff})`;
         }
     },
     data: () => ({

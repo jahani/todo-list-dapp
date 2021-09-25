@@ -32,7 +32,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
-import moment from 'moment-timezone'
+import moment from 'moment'
 
 const args = {
     contractName: 'Todos',
@@ -48,11 +48,10 @@ export default {
     },
     methods: {
         onSubmit() {
-            moment.tz.setDefault();
-            let datetimeString = this.date + " " + this.time;
-            let timestamp = moment(datetimeString, "YYYY-MM-DD HH:mm").unix();
-            if (this.date == "" && this.time == "") {
-                timestamp = 0;
+            let timestamp = 0;
+            if (this.date != "" && this.time != "") {
+                let datetimeString = this.date + " " + this.time;
+                timestamp = moment(datetimeString, "YYYY-MM-DD HH:mm").unix();
             }
             this.drizzleInstance
                 .contracts[args.contractName]
