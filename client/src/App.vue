@@ -9,11 +9,15 @@
             Todo List DApp
           </b-navbar-brand>
 
-          <b-navbar-nav>
+          <!-- <b-navbar-nav>
             <b-nav-item href="#">Home</b-nav-item>
-          </b-navbar-nav>
+          </b-navbar-nav> -->
 
           <b-navbar-nav>
+            <b-nav-item href="#" disabled>
+                Punishment (sec)
+                <drizzle-contract contractName="Todos" method="PUNISHMENT_TIME" />
+            </b-nav-item>
             <b-nav-item href="#" disabled>
               <drizzle-account units="Ether" :precision="3" />
             </b-nav-item>
