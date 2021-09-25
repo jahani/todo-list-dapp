@@ -2,29 +2,32 @@
   <div v-if="isDrizzleInitialized">
     <div>
 
-      <h5>Set a Task as Completed</h5>
+      <h5 class="pt-2">Set a Task as Completed</h5>
       <drizzle-contract-form
         contractName="Todos"
         method="setComplete"
         :placeholders="['Task ID']"
       />
-
       
-      <h5>Set Prize for a Task</h5>
-      <!-- <drizzle-contract-form
-        contractName="Todos"
-        method="setPrize"
-        :placeholders="['Task ID']"
-      /> -->
+      <h5 class="pt-2">Set Prize for a Task</h5>
       <SetPrizeForm />
-
       
-      <h5>Clear a Task</h5>
+      <h5 class="pt-2">Clear a Task</h5>
       <drizzle-contract-form
         contractName="Todos"
         method="clear"
         :placeholders="['Task ID']"
       />
+
+      <h5 class="pt-2">Add a Task</h5>
+      <drizzle-contract-form
+        contractName="Todos"
+        method="add"
+        :placeholders="['Description', 'Due Date']"
+      />
+
+      <h5 class="pt-2">Tasks List</h5>
+      <drizzle-contract contractName="Todos" method="getTasks" />
 
     </div>
     
@@ -46,10 +49,6 @@ export default {
   },
   computed: {
     ...mapGetters('drizzle', ['isDrizzleInitialized']),
-
-    placeholders() {
-      return ['Description', 'Due Date']
-    }
   }
 }
 </script>
