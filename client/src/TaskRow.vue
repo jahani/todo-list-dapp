@@ -11,12 +11,14 @@
         <td>
             <span v-if="task.value != '0'">{{ prizeValueString(task.value) }}</span>
             <div v-else class="row">
-                <div class="col-md-6 col-sm-12">
-                    <b-input size="sm" v-model="prizeAmount" placeholder="Prize Amount (Eth)" type="text" />
-                </div>
-                <div class="col-md-6 col-sm-12">
-                    <b-button size="sm" variant="danger" @click.prevent="onSetPrizeSubmit">Set Prize</b-button>
-                </div>
+                <b-form inline class="row" @submit.prevent="onSetPrizeSubmit">
+                    <div class="col-md-6 col-sm-12">
+                        <b-input size="sm" v-model="prizeAmount" placeholder="Prize Amount (Eth)" type="text" />
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <b-button size="sm" variant="danger" type="submit">Set Prize</b-button>
+                    </div>
+                </b-form>
             </div>
         </td>
         <td>
