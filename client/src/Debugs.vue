@@ -42,7 +42,7 @@ import SetPrizeForm from './SetPrizeForm'
 import { mapGetters } from 'vuex'
 
 export default {
-  name: 'Todos',
+  name: 'Debugs',
   components: {
     Tasks,
     SetPrizeForm

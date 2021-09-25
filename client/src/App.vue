@@ -51,7 +51,7 @@
     <div class="container">
       <div class="row py-3 my-4">
         <h2 class="pb-2 border-bottom">Testing and Debugging</h2>
-        <Todos />
+        <Debugs />
       </div>
     </div>
 
@@ -79,19 +79,19 @@
 </template>
 
 <script>
-import Todos from './Todos'
 import Tasks from './Tasks'
 import Prizes from './Prizes'
 import AddTaskForm from './AddTaskForm'
+import Debugs from './Debugs'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'app',
   components: {
-    Todos,
     Tasks,
     Prizes,
     AddTaskForm,
+    Debugs,
   },
 
   computed: mapGetters('drizzle', ['isDrizzleInitialized'])
