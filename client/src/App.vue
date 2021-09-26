@@ -78,7 +78,8 @@
 
   <div v-else>
     <p>Loading...</p>
-    <p>Is MetaMask extension installed on your browser?</p>
+    <p>Is <a href="https://metamask.io/" target="_blank">MetaMask</a> extension installed on your browser?</p>
+    <p>Is proper network selected in MetaMask? (Rinkeby Test Network or Localhost on port 8545)</p>
   </div>
 </template>
 
