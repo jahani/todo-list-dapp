@@ -103,6 +103,7 @@ contract TaskFactory is Financable, Pausable{
   }
 
   // Remove task
+  // Do NOT preserve tasks order
   function _remove(uint _id) internal notPrized(_id) {
     require(_id < tasks[msg.sender].length);
 

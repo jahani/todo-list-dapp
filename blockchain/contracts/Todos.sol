@@ -6,29 +6,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 import "./TaskFactory.sol";
 
 contract Todos is Ownable, TaskFactory{
-  
-  /*
-   * State variables
-   */
 
-  
-
-  /* 
-   * Events
-   */
-  
-
-
-  /* 
-   * Modifiers
-   */
-  
-
-
-  /* 
-   * Functions
-   */
-  
   // Get user's all tasks
   function getTasks() public view returns (Task[] memory) {
     return _getTasks();
@@ -46,7 +24,10 @@ contract Todos is Ownable, TaskFactory{
     _setComplete(_id);
   }
 
-  // Remove a task TODO
+  // Remove a task
+  function remove(uint _id) public {
+    _remove(_id);
+  }
 
   // Add prize to a task
   function setPrize(uint _id) public payable {

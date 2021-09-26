@@ -35,7 +35,7 @@
           <AddTaskForm />
         </div>
         <div class="col-lg-1 col-md-12"></div>
-        <div class="col-lg-3 col-md-12 bg-danger bg-gradient text-light rounded-3 p-2">
+        <div class="col-lg-3 col-md-12 bg-warning bg-gradient text-light rounded-3 p-2">
           <h3>Claim Your Prize</h3>
           <Prizes />
         </div>

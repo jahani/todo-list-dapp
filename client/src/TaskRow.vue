@@ -6,7 +6,7 @@
         <td>{{ beautyDatetime(task.dueDate) }}</td>
         <td>
             <span v-if="task.completed">✅</span>
-            <b-button v-else size="sm" variant="primary" @click.prevent="onCompleteSubmit">Check</b-button>
+            <b-button v-else size="sm" variant="success" @click.prevent="onCompleteSubmit">Check</b-button>
         </td>
         <td>
             <span v-if="task.value != '0'">{{ prizeValueString(task.value) }}</span>
@@ -16,14 +16,14 @@
                         <b-input size="sm" v-model="prizeAmount" placeholder="Prize Amount (Eth)" type="text" />
                     </div>
                     <div class="col-md-6 col-sm-12">
-                        <b-button size="sm" variant="danger" type="submit">Set Prize</b-button>
+                        <b-button size="sm" variant="warning" type="submit">Set Prize</b-button>
                     </div>
                 </b-form>
             </div>
         </td>
         <td>
-            <b-button v-if="!task.cleared" size="sm" variant="primary" @click.prevent="onClearSubmit">Clear</b-button>
-            <span v-else>-</span>
+            <b-button v-if="task.cleared" size="sm" variant="danger" @click.prevent="onRemoveSubmit">Remove</b-button>
+            <b-button v-else size="sm" variant="primary" @click.prevent="onClearSubmit">Clear</b-button>
         </td>
     </tr>
 </template>
@@ -43,17 +43,23 @@ export default {
         ...mapGetters('accounts', ['activeAccount', 'activeBalance'])
     },
     methods: {
-        onCompleteSubmit() {
+        doAction(_method) {
             this.drizzleInstance
                 .contracts[this.contractName]
-                .methods['setComplete']
+                .methods[_method]
                 .cacheSend(this.taskID)
         },
+        onCompleteSubmit() {
+            const method = 'setComplete';
+            this.doAction(method);
+        },
         onClearSubmit() {
-            this.drizzleInstance
-                .contracts[this.contractName]
-                .methods['clear']
-                .cacheSend(this.taskID)
+            const method = 'clear';
+            this.doAction(method);
+        },
+        onRemoveSubmit() {
+            const method = 'remove';
+            this.doAction(method);
         },
         onSetPrizeSubmit() {
             this.drizzleInstance

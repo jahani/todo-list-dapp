@@ -19,6 +19,13 @@
         :placeholders="['Task ID']"
       />
 
+      <h5 class="pt-2">Remove a Task</h5>
+      <drizzle-contract-form
+        contractName="Todos"
+        method="remove"
+        :placeholders="['Task ID']"
+      />
+
       <h5 class="pt-2">Add a Task</h5>
       <drizzle-contract-form
         contractName="Todos"
