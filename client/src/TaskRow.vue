@@ -6,7 +6,7 @@
         <td>{{ beautyDatetime(task.dueDate) }}</td>
         <td>
             <span v-if="task.completed">✅</span>
-            <b-button v-else size="sm" variant="success" @click.prevent="onCompleteSubmit">Check</b-button>
+            <b-button v-else size="sm" variant="success" @click.prevent="onCompleteSubmit">Complete</b-button>
         </td>
         <td>
             <span v-if="task.value != '0'">{{ prizeValueString(task.value) }}</span>

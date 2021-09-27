@@ -8,8 +8,8 @@
                     <th scope="col">Description</th>
                     <th scope="col">Created At</th>
                     <th scope="col">Due Date</th>
-                    <th scope="col">Done?</th>
-                    <th scope="col">Value</th>
+                    <th scope="col">Complete</th>
+                    <th scope="col">Prize</th>
                     <th scope="col">Remove</th>
                 </tr>
             </thead>
