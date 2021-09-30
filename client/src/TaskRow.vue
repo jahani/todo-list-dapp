@@ -5,17 +5,31 @@
         <td>{{ beautyDatetime(task.createdAt) }}</td>
         <td>{{ beautyDatetime(task.dueDate) }}</td>
         <td>
-            <span v-if="task.completed">✅</span>
-            <b-button v-else size="sm" variant="success" @click.prevent="onCompleteSubmit">Complete</b-button>
+            <div v-if="task.completed" style="white-space: nowrap;">
+                <b-form-checkbox v-model="task.completed" disabled>
+                    &nbsp;Completed
+                </b-form-checkbox>
+            </div>
+            <div v-else>
+                <!-- <b-form-checkbox v-model="task.completed" @change="onCompleteSubmit">
+                    &nbsp;Complete
+                </b-form-checkbox> -->
+                <b-button
+                    size="sm" @click.prevent="onCompleteSubmit"
+                    :variant="task.value!='0' ? 'warning' : 'success'"
+                >
+                    Complete
+                </b-button>
+            </div>
         </td>
         <td>
             <span v-if="task.value != '0'">{{ prizeValueString(task.value) }}</span>
-            <div v-else class="row">
+            <div v-else-if="task.dueDate != '0' && task.completed == '0'" class="row">
                 <b-form inline class="row" @submit.prevent="onSetPrizeSubmit">
-                    <div class="col-md-6 col-sm-12">
-                        <b-input size="sm" v-model="prizeAmount" placeholder="Prize Amount (Eth)" type="text" />
+                    <div class="col-md-7 col-sm-12">
+                        <b-input size="sm" v-model="prizeAmount" placeholder="Amount (Ξ)" type="text" />
                     </div>
-                    <div class="col-md-6 col-sm-12">
+                    <div class="col-md-5 col-sm-12">
                         <b-button size="sm" variant="warning" type="submit">Set Prize</b-button>
                     </div>
                 </b-form>

@@ -15,6 +15,9 @@
 
           <b-navbar-nav>
             <b-nav-item href="#" disabled>
+                Network<br>: Rinkeby
+            </b-nav-item>
+            <b-nav-item href="#" disabled>
                 Punishment (sec)
                 <drizzle-contract contractName="Todos" method="PUNISHMENT_TIME" />
             </b-nav-item>
@@ -36,7 +39,7 @@
         </div>
         <div class="col-lg-1 col-md-12"></div>
         <div class="col-lg-3 col-md-12 bg-warning bg-gradient text-light rounded-3 p-2">
-          <h3>Claim Your Prize</h3>
+          <h3>Claim Prize (wei)</h3>
           <Prizes />
         </div>
       </div>
