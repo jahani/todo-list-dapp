@@ -2,9 +2,10 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 import "./Financable.sol";
+import "./Prizable.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 
-contract TaskFactory is Financable, Pausable{
+contract TaskFactory is Financable, Prizable, Pausable{
   /*
    * Constant variables
    */
