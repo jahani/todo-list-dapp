@@ -7,12 +7,15 @@ import "./TaskFactory.sol";
 
 contract Todos is Ownable, TaskFactory{
 
-  // Get user's all tasks
+  /// @notice Get all tasks of msg sender
+  /// @return Tasks array
   function getTasks() public view returns (Task[] memory) {
     return _getTasks();
   }
   
-  // Add a new task
+  /// @notice Add a new task for msg sender
+  /// @param _description Task decription
+  /// @param _dueDate Task due date
   function add(string memory _description, uint _dueDate) public {
     _add(_description, _dueDate);
   }

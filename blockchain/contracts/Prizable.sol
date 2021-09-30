@@ -2,18 +2,10 @@
 pragma solidity >=0.8.0 <0.9.0;
 
 
+/// @title Users prize bank
 contract Prizable {
     // Prizes
     mapping (address => uint) public prizes;
-
-    // Fallback funciton
-    // No direct payment allowed
-    fallback() external payable {
-        revert();
-    }
-    receive() external payable {
-        revert();
-    }
 
     function addPrize(address _address, uint _amount) internal {
         uint balance = prizes[_address];

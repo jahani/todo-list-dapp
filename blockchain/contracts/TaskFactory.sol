@@ -17,7 +17,8 @@ contract TaskFactory is Financable, Prizable, Pausable{
   /*
    * State variables
    */
-
+  
+  // Task structure
   struct Task {
     string description;
     uint createdAt;
@@ -56,16 +57,19 @@ contract TaskFactory is Financable, Prizable, Pausable{
     _;
   }
 
+  // If task is completed
   modifier completed (uint _id) {
     require(getTask(_id).completed);
     _;
   }
 
+  // If a task is not completed
   modifier incomplete (uint _id) {
     require(!getTask(_id).completed);
     _;
   }
 
+  // If a due date is set for task
   modifier dueIsSet (uint _id) {
     require(getTask(_id).dueDate != 0);
     _;
@@ -76,27 +80,36 @@ contract TaskFactory is Financable, Prizable, Pausable{
    */
 
   // Add task
-  function _add(
-    string memory _description,
-    uint _dueDate
-  ) internal validDueDate(_dueDate) {
+  function _add(string memory _description, uint _dueDate)
+    internal validDueDate(_dueDate)
+  {
+    // Create a task instance
     Task memory task = Task({
+      // Input parameters
       description: _description,
-      createdAt: block.timestamp,
-      value: 0,
       dueDate: _dueDate,
+      // Autofill task creation timestamp
+      createdAt: block.timestamp,
+      // Default values
+      value: 0,
       completed: false,
       cleared: true
     });
+
+    // Push created task to user's tasks
     tasks[msg.sender].push(task);
 
+    // Log tasks are updated
     emit LogTasksUpdated();
   }
 
 
   // Update task
-  function _update(uint _id, string memory _description, uint _dueDate)
-  internal notPrized(_id) {
+  function _update(
+    uint _id,
+    string memory _description,
+    uint _dueDate
+  ) internal notPrized(_id) {
     Task memory task = tasks[msg.sender][_id];
     task.description = _description;
     task.dueDate = _dueDate;
@@ -104,11 +117,16 @@ contract TaskFactory is Financable, Prizable, Pausable{
   }
 
   // Remove task
-  // Do NOT preserve tasks order
-  function _remove(uint _id) internal notPrized(_id) {
-    require(_id < tasks[msg.sender].length);
+  // Current implemetation do NOT preserve tasks order
+  function _remove(uint _id)
+   internal
+   notPrized(_id)
+  {
+    uint userTasksLength = tasks[msg.sender].length;
 
-    tasks[msg.sender][_id] = tasks[msg.sender][tasks[msg.sender].length - 1];
+    require(_id < userTasksLength);
+
+    tasks[msg.sender][_id] = tasks[msg.sender][userTasksLength - 1];
     tasks[msg.sender].pop();
 
     emit LogTasksUpdated();
@@ -116,8 +134,10 @@ contract TaskFactory is Financable, Prizable, Pausable{
   
 
   // Set complete
-  function _setComplete(uint _id) internal incomplete(_id) {
-
+  function _setComplete(uint _id)
+    internal
+    incomplete(_id)
+  {
     require(!isExpired(_id), "due date is expired");
     require(!isUnderPunishment(_id), "task is under punishment");
     Task memory task = getTask(_id);
@@ -133,7 +153,11 @@ contract TaskFactory is Financable, Prizable, Pausable{
   }
 
   // Set incomplete
-  function _setIncomplete(uint _id) internal completed(_id) notPrized(_id) {
+  function _setIncomplete(uint _id)
+    internal
+    completed(_id)
+    notPrized(_id)
+  {
     Task memory task = getTask(_id);
     task.completed = false;
     replace(_id, task);
@@ -162,7 +186,9 @@ contract TaskFactory is Financable, Prizable, Pausable{
   // Set prize
   function _setPrize(uint _id)
     internal
-    dueIsSet(_id) whenNotPaused() incomplete(_id)
+    dueIsSet(_id)
+    incomplete(_id)
+    whenNotPaused()
   {
     Task memory task = getTask(_id);
     require(task.value == 0);
