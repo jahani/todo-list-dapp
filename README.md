@@ -51,3 +51,4 @@ npm run serve
 
 ### Ideas
 - [ ] Add prize for other users tasks
+- [ ] Punish user by deducting a specified percent of prize and transfering it to contract owner
