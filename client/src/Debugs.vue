@@ -36,6 +36,18 @@
       <h5 class="pt-2">Tasks List</h5>
       <drizzle-contract contractName="Todos" method="getTasks" />
 
+      <h5 class="pt-2">Pause contract deposits</h5>
+      <drizzle-contract-form
+        contractName="Todos"
+        method="pause"
+      />
+
+      <h5 class="pt-2">Unpause contract deposits</h5>
+      <drizzle-contract-form
+        contractName="Todos"
+        method="unpause"
+      />
+
     </div>
     
   </div>
