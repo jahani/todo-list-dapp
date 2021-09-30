@@ -16,6 +16,7 @@ ganache-cli
 2. Navigate to `blockchain` directory and type below command and enter.
 ```
 cd blockchain
+npm install
 truffle migrate --reset --compile-all --network development
 # Deploy project on Rinkeby testnet
 # truffle migrate --reset --compile-all --network rinkeby
