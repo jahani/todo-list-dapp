@@ -11,4 +11,4 @@ task.cleared = true;
 replace(_id, task);
 addPrize(msg.sender, task.value);
 ```
-Optionally OpenZeppelin's ReentrancyGuard contract could have beenn used.
+Optionally OpenZeppelin's ReentrancyGuard contract could have been used.
