@@ -1,13 +1,14 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
+import "@openzeppelin/contracts/security/ReentrancyGuard.sol";
 
 /// @title Users prize bank
-contract Prizable {
+contract Prizable is ReentrancyGuard {
     // Prizes
     mapping (address => uint) public prizes;
 
-    function addPrize(address _address, uint _amount) internal {
+    function addPrize(address _address, uint _amount) nonReentrant internal {
         uint balance = prizes[_address];
         balance += _amount;
         prizes[_address] = balance;
