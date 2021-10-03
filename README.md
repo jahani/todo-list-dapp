@@ -3,11 +3,11 @@ A todo list powered by Ethereum smart contracts. User can optionally deposit pri
 
 ## Contents
 - [Screenshots](docs/screenshots.md)
+- [Local Run Guide and Demo (Persian)](https://youtu.be/k96jPQ0F7Ww)
 - [Deployed Addresses](docs/deployed_addresses.txt)
 - [Avoiding Common Attacks](docs/avoiding_common_attacks.md)
 - [Design Pattern Decisions](docs/design_pattern_decisions.md)
 - [Installation](#installation)
-- [Todos](#todos)
 
 ## Installation
 0. Install required packages.
@@ -42,21 +42,6 @@ npm run serve
 ```
 4. Open [http://localhost:8080/](http://localhost:8080/) URL to interact with the contract. **MetaMask** extension should be installed on your browser and you need to select the network which match with where the contract is being deployed. Furthermore you can import your generated accounts in Truffle to cover the fees.
 
-## TODOs
-
-### Project
-- [x] Develop project
-- [x] Explain how to run the project (`README.md`)
-- [x] `design_pattern_decisions.md` file (optional)
-- [x] `avoiding_common_attacks.md` file (optional)
-- [x] `deployed_addresses.txt` file which contains contract address and testnet name
-- [ ] Demo (screen recording)
-- [x] Test functions (at least 5)
-- [x] A simple UI
-- [ ] Record project deployment process and doing different scenarios (4 to 10 minutes)
-- [x] Metamask integration
-- [x] Use a library
-
-### Ideas
+## Ideas
 - [ ] Add prize for other users tasks
-- [ ] Punish user by deducting a specified percent of prize and transfering it to contract owner
+- [ ] Punish user by deducting a specified percent of prize and transfering it to contract owner address
